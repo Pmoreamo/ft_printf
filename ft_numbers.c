@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numeros.c                                       :+:      :+:    :+:   */
+/*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmorello <pmorello@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:43:25 by pmorello          #+#    #+#             */
-/*   Updated: 2024/03/14 10:48:16 by pmorello         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:16:34 by pmorello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ int	ft_putnum(int n)
 int	ft_putunum(unsigned int n)
 {
 	int	result;
-	int	aux;
 
-	aux = 0;
 	result = 0;
 	if (n > 9)
 	{
@@ -54,8 +52,8 @@ int	ft_putunum(unsigned int n)
 		if (result == -1)
 			return (-1);
 	}
-	aux += ft_putchar (n + '0');
-	if (aux < 0)
-		return (aux);
-	return (aux + result);
+	result += ft_putchar (n + '0');
+	if (result < 0)
+		return (-1);
+	return (result);
 }

@@ -6,38 +6,41 @@
 #    By: pmorello <pmorello@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 15:20:58 by pmorello          #+#    #+#              #
-#    Updated: 2024/03/07 16:14:07 by pmorello         ###   ########.fr        #
+#    Updated: 2024/03/14 11:59:44 by pmorello         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= ft_printf.c ft_hexas.c ft_numbers.c ft_text.c
+NAME = libftprintf.a 
 
-OBJS	= ${SRCS:.c=.o}
+CC = gcc
 
-NAME	= libftprintf.a
+RM = rm -f
 
-CC	= gcc
+CFLAGS = -Wall -Wextra -Werror
 
-RM	= rm -f
+AR = ar -rc
 
-CFLAGS	= -Wall -Wextra -Werror
+ARXIUS = ft_printf.c ft_hexas.c ft_numbers.c ft_text.c
 
-AR = ar rc
+OBJS = ${ARXIUS:.c=.o}
 
-.c.o:
+all: ${NAME}
+
+${NAME}: ${OBJS} 
+		${AR} ${NAME} ${OBJS}
+	
+.c.o:	 
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
-				${AR} ${NAME} ${OBJS}
+clean: 
+		${RM} ${OBJS}
 
-all:		${NAME}
+fclean: clean 
+		${RM} ${NAME}
 
-clean:
-				${RM} ${OBJS} ${OBJB}
+re: fclean all
 
-fclean: 	clean
-				${RM} ${NAME}
+.PHONY: all clean fclean re
 
-re: 		fclean all
 
-.PHONY:		all clean fclean re
+

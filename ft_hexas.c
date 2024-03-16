@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hexadecimals.c                                  :+:      :+:    :+:   */
+/*   ft_hexas.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmorello <pmorello@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:55:08 by pmorello          #+#    #+#             */
-/*   Updated: 2024/03/14 10:45:13 by pmorello         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:29:55 by pmorello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ int	ft_puthex(unsigned int numero, char type)
 {
 	int		result;
 	char	*hu;
-	char	*base;
+	char	*b;
 
 	hu = "0123456789ABCDEF";
+	b = "0123456789abcdef";
 	result = 0;
-	base = "0123456789abcdef";
 	if (type == 'U')
-		base = hu;
+		b = hu;
 	if (numero < 16)
 	{
-		result += ft_putchar(*(base + numero));
+		result += ft_putchar(*(b + numero));
 		if (result == -1)
 			return (-1);
 	}
@@ -44,10 +44,10 @@ int	ft_puthex(unsigned int numero, char type)
 int	ft_putpointer(unsigned long int numero, int times)
 {
 	int		result;
-	char	*base;
+	char	*b;
 
 	result = 0;
-	base = "0123456789abcdef";
+	b = "0123456789abcdef";
 	if (times++ == 1)
 	{
 		result += ft_putstr("0x");
@@ -56,7 +56,7 @@ int	ft_putpointer(unsigned long int numero, int times)
 	}
 	if (numero < 16)
 	{
-		result += ft_putchar(*(base + numero));
+		result += ft_putchar(*(b + numero));
 		if (result == -1)
 			return (-1);
 	}

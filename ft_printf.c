@@ -6,7 +6,7 @@
 /*   By: pmorello <pmorello@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:04:13 by pmorello          #+#    #+#             */
-/*   Updated: 2024/03/14 10:42:30 by pmorello         ###   ########.fr       */
+/*   Updated: 2024/03/16 10:43:24 by pmorello         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	ft_conversiones(va_list params, char const *str, int i)
 {
 	int	result;
-	int	aux;
 
-	aux = 0;
 	result = 0;
 	if (str[i] == 'c')
 		result += ft_putchar(va_arg(params, int));
@@ -30,7 +28,7 @@ int	ft_conversiones(va_list params, char const *str, int i)
 	else if (str[i] == 'u')
 		result += ft_putunum(va_arg(params, unsigned int));
 	else if (str[i] == 'x')
-		result += ft_puthex(va_arg(params, unsigned int), 'L');
+		result += ft_puthex(va_arg(params, unsigned int), 'b');
 	else if (str[i] == 'X')
 		result += ft_puthex(va_arg(params, unsigned int), 'U');
 	else if (str[i] == '%')
@@ -41,25 +39,19 @@ int	ft_conversiones(va_list params, char const *str, int i)
 int	ft_printf(char const *str, ...)
 {
 	int		result;
-	int		pfrase;
+	int		i;
 	va_list	params;
-	int		aux;
 
-	aux = 0;
-	pfrase = -1;
+	i = -1;
 	result = 0;
 	va_start(params, str);
-	while (str[++pfrase] != '\0' && result != -1)
+	while (str[++i] != '\0' && result != -1)
 	{
-		if (str[pfrase] == '%')
-			result += ft_conversiones(params, str, ++pfrase);
+		if (str[i] == '%')
+			result += ft_conversiones(params, str, ++i);
 		else
 		{
-			aux = ft_putchar(str[pfrase]);
-			if (aux == -1)
-				return (-1);
-			else
-				result += aux;
+			result += ft_putchar(str[i]);
 		}
 	}
 	va_end(params);
