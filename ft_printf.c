@@ -33,6 +33,8 @@ int	ft_conversiones(va_list params, char const *str, int i)
 		result += ft_puthex(va_arg(params, unsigned int), 'U');
 	else if (str[i] == '%')
 		result += ft_putchar('%');
+	else
+		return (-1);
 	return (result);
 }
 
@@ -40,6 +42,7 @@ int	ft_printf(char const *str, ...)
 {
 	int		result;
 	int		i;
+	int		conv_result;
 	va_list	params;
 
 	i = -1;
@@ -47,8 +50,11 @@ int	ft_printf(char const *str, ...)
 	va_start(params, str);
 	while (str[++i] != '\0' && result != -1)
 	{
-		if (str[i] == '%')
-			result += ft_conversiones(params, str, ++i);
+		if (str[i] == '%' && str[i + 1])
+			conv_result = ft_conversiones(params, str, ++i);
+			if (conv_result == -1)
+				result = -1;
+			result += conv_result;
 		else
 		{
 			result += ft_putchar(str[i]);
