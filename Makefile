@@ -29,7 +29,7 @@ all: ${NAME}
 ${NAME}: ${OBJS} 
 		${AR} ${NAME} ${OBJS}
 	
-.c.o:	 
+%.o:%.c ft_printf.h	 
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean: 
